@@ -1,25 +1,24 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+
 
 
 export const MyContext = React.createContext();
+
 const MyProvider = (props) => {
   const [state, changeState] = useState({
-    students: 'categio'
+    timer:false
   });
 
   return (
     <MyContext.Provider value={{
-      state
-    }}
-    >
+      state,
+      restartTimer: (timer) => changeState({timer:timer})
+      }}>
       {props.children}
     </MyContext.Provider>
   );
 };
 
-MyContext.propTypes = {
-  children: PropTypes.element.isRequired,
-};
+
 
 export default MyProvider;
